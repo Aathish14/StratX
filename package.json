@@ -1,0 +1,30 @@
+{
+  "name": "stratx",
+  "version": "1.0.0",
+  "description": "��#\u0000 \u0000S\u0000t\u0000r\u0000a\u0000t\u0000X\u0000 \u0000P\u0000r\u0000o\u0000j\u0000e\u0000c\u0000t\u0000\r\u0000 \u0000",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Aathish14/StratX.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "module",
+  "bugs": {
+    "url": "https://github.com/Aathish14/StratX/issues"
+  },
+  "homepage": "https://github.com/Aathish14/StratX#readme",
+  "devDependencies": {
+    "@types/node": "^22.19.7",
+    "hardhat": "^3.1.5",
+    "typescript": "~5.8.0"
+  },
+  "dependencies": {
+    "@openzeppelin/contracts": "^5.4.0",
+    "ethers": "^6.16.0"
+  }
+}
