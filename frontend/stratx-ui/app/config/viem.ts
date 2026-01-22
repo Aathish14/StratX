@@ -4,7 +4,7 @@ import { createPublicClient, createWalletClient, custom, http } from "viem";
 import { sepolia } from "viem/chains";
 
 /**
- * Read-only client (safe everywhere)
+ * Read-only client (safe on server + client)
  */
 export const publicClient = createPublicClient({
   chain: sepolia,
@@ -13,11 +13,15 @@ export const publicClient = createPublicClient({
 
 /**
  * Wallet client (browser only)
+ * Wrapped in a function to avoid SSR issues
  */
-export const walletClient =
-  typeof window !== "undefined" && window.ethereum
-    ? createWalletClient({
-      chain: sepolia,
-      transport: custom(window.ethereum),
-    })
-    : null;
+export function getWalletClient() {
+  if (typeof window === "undefined") return null;
+  const ethereum = (window as any).ethereum;
+  if (!ethereum) return null;
+
+  return createWalletClient({
+    chain: sepolia,
+    transport: custom(ethereum),
+  });
+}
