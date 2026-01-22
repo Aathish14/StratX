@@ -4,9 +4,7 @@ import { createPublicClient, createWalletClient, custom, http } from "viem";
 import { sepolia } from "viem/chains";
 
 /**
- * Public client
- * - Used for READ operations (ownerOf, balanceOf, etc.)
- * - Safe on server + client
+ * Read-only client (safe everywhere)
  */
 export const publicClient = createPublicClient({
   chain: sepolia,
@@ -14,15 +12,12 @@ export const publicClient = createPublicClient({
 });
 
 /**
- * Wallet client
- * - Used for WRITE operations (mint, transfer)
- * - Only initialized in browser
- * - Safe for Vercel / SSR
+ * Wallet client (browser only)
  */
 export const walletClient =
-  typeof window !== "undefined" && (window as any).ethereum
+  typeof window !== "undefined" && window.ethereum
     ? createWalletClient({
       chain: sepolia,
-      transport: custom((window as any).ethereum),
+      transport: custom(window.ethereum),
     })
     : null;
